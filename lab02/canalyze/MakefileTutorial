@@ -1,0 +1,19 @@
+all: foo bar   //all is the target and its  depand on foo and bar
+	cat foo bar // will happend if foo and bar arrnt target for anything
+
+foo: foo.c //we will do cc -o foo foo.c
+	
+bar: bar.java don.java
+	cat bar.java don.java
+
+the same way:
+testfgn: testfgn.o fgetname.o
+
+testnl.o: testnl.c namelist.h
+namelist.o: namelist.c namelist.h
+
+testfgn.o: testfgn.c fgetname.h
+fgetname.o: fgetname.c fgetname.h
+
+clean: //delete all the temp files
+	rm -f testnl testfgn *.o
