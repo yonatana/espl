@@ -10,7 +10,6 @@ char cmpstr (char a [],char b []){
     }
     c++;
   }
-  //out
   if(a[c]>b[c]){
     ans =1;
   }else {

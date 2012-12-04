@@ -9,7 +9,7 @@ global strlen
 
 extern main
 _start:
-	lea ecx, [esp+4]   ;points on argv
+	mov ecx, [esp+4]   ;points on argv
 	push ecx	   ;insert argv to the stack
 	push DWORD [esp+4] ;insert argc to the stack
 	call	main	   ;do main

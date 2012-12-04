@@ -11,12 +11,12 @@ LDFLAGS=$(CFLAGS)
 %.o: %.c
 	gcc $(CFLAGS) -c $<
 
-all: scmp
+all: scmpa
 
 scmp: scmp.o cmpstr.o
 	gcc -m32 -o $@ $^
 
-scmpa: scmp.o cmpstra.o
+scmpa: scmpa.o cmpstra.o
 	gcc -m32 -o $@ $^
 
 
