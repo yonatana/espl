@@ -36,15 +36,16 @@ int main(int argc, char **argv)
     printf ("starts with argc%i: \n",argc);
     //opt function
     while ((opt = getopt(argc, argv,"n:hq")) != -1) {
-      printf ("while\n");
+      //printf ("while\n");
         switch (opt) {
 	  printf ("switch\n");
              case 'n' : //print first number whos differ
-	        fileOld = fopen(argv[optind],"r");
-		fileNew = fopen(argv[optind+1],"r");
+	        fileOld = fopen(argv[1],"r");
+		fileNew = fopen(argv[1+1],"r");
 		printf ("case n,argc:%i argv[1]: %s argv[2]: %s\n",argc, argv[optind],argv[optind+1]);
+		//printf ("case n,argc:%i argv[1]: %c argv[2]: %c\n",argc, fileOld,fileNew);
 		numberOfDiffrencesToPrint = atoi(optarg);
-		if(fileOld == NULL){
+		if(!fileOld){
 		printf("fileOld was null\n");
 		}
 		if(fileNew == NULL){
