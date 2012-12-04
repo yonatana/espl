@@ -16,7 +16,7 @@ namelist make_namelist() {
 
 /** double the capacity of the list, used by add_name when the list is full */
 static void expand_namelist(namelist nl) {
-	nl->camakepacity*= 2;
+	nl->capacity*= 2;
 	nl->names = (struct namestat *)realloc(nl->names, nl->capacity*sizeof(struct namestat));
 }
 
