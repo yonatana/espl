@@ -1,0 +1,31 @@
+CC=gcc
+CFLAGS=-O -g
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+all: encbcS decbc test
+
+test: encbcS decbc testbc
+	./testbc
+	if [ "`./encbcS shalom olam|./decbc`" != "shalom olam" ]; then\
+		exit 1;\
+	fi
+
+# TODO: add rule for encbcS
+encbcS: encbcS.o bclib.o
+	$(CC) $(CFLAGS) -o $@ $^
+decbc: decbc.o bclib.o
+	$(CC) $(CFLAGS) -o $@ $^
+
+testbc: bclib.c
+	$(CC) $(CFLAGS) -o $@ -DTESTBC=1 $^
+
+# TODO: add rule for encbcS.o
+encbcS.o: encbcS.c bclib.h
+decbc.o: decbc.c bclib.h
+bclib.o: bclib.c bclib.h
+
+
+clean:
+	rm -f *.o encbcS decbc testbc

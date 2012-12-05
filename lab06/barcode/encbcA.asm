@@ -1,15 +1,15 @@
 section	.text
     global main			;must be declared for linker (ld)
 
-extern read
-extern printBarcode
+;extern read
+;extern printBarcode
 extern main2
 
 main:					;tell linker entry point
     push ebp			;input
     mov	 ebp, esp
-    push [ebp+12]		;push argc
-    push [ebp+8]		;push argv
+    push DWORD [ebp+12]		;push argc
+    push DWORD [ebp+8]		;push argv
     call main2
     ;read(argc, argv)
 

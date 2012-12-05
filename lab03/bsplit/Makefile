@@ -6,10 +6,10 @@
 
 all: bsplit bmerge bsplit.man bmerge.man
 
-bsplit: bsplit.o xsum.o
+bsplit: bsplit.o #xsum.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
-bmerge: bmerge.o xsum.o
+bmerge: bmerge.o #xsum.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 bsplit.o: bsplit.c xsum.h
