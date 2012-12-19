@@ -74,6 +74,8 @@ int main(int argc, char** argv){
  //ftell(tell me where in the file we are)
  //fseek(takes us to the place we want)
  
+ int numchank=(filesize+chanksize-1)/chanksize;
+ 
  //part B
  //make the function works on difreent proccesses 
  
@@ -108,6 +110,8 @@ int main(int argc, char** argv){
 
 return 0;
 }
+
+int 
 
 void newFile(char* newName,char* name, int fileCount){
   char num[5] = {0};
