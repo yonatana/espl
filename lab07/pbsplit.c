@@ -71,13 +71,17 @@ int main(int argc, char** argv){
  //part A
  //we should write a function which gets (location in a file, max size of bytes, name of target)
  //it will do the body of the while, one and replace it
- //ftell(tell me where in the file we are)
+ //ftell(tell me where in the file we are) 
  //fseek(takes us to the place we want)
+ //use only before the loop,jump to the end (0 from the end)
+ //then use ftell to know the filesize
+ //now get chank file:  int numchank=(filesize+chanksize-1)/chanksize;
  
- int numchank=(filesize+chanksize-1)/chanksize;
+ 
  
  //part B
  //make the function works on difreent proccesses 
+ //use folk()
  
  
  //this part should work in deffirent procceses 
