@@ -7,3 +7,5 @@ push:
 	git add lab$(LAB)
 	git commit -a -m "$(LAB)"
 	git push origin master
+per:
+	chmod +x "filename"
