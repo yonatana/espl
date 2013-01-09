@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+
+import os, os.path, sys, getpass, shlex, subprocess, sys
+
+home=os.getenv('HOME')
+
+def getcwd():
+    "like os.getcwd(), but collapses the home directory prefix into ~"
+    cwd = os.getcwd()
+    if cwd.startswith(home):
+        cwd = '~'+cwd[len(home):]
+    return cwd
+
+while True:
+    print "%s@%s>" % (getpass.getuser(), getcwd()),
+
+    argv = None
+    try:
+        argv = shlex.split(raw_input())
+    except EOFError:
+        print
+        break                             # end of file from user, e.g. Ctrl-D
+
+    if not argv:
+        continue # empty command
+
+    if argv[0] in ['exit', 'quit', 'bye']:
+        break
+    elif argv[0]=='cd':
+        try:
+            os.chdir(os.path.expanduser(argv[1])) # expand ~ to home directory
+        except IndexError:                   # no arguments, chdir to home dir
+            os.chdir(home)
+        except OSError, s:
+            print >>sys.stderr, "chdir: %s" % s
+    elif argv[-2] =='>':
+      stout = open(argv[-1],'w') 
+    elif argv[-2] =='<':  
+      stdin = open(argv[-1],'w')
+        
+    elif '|' in argv:
+	print "do pipes to the face"
+	p1 = Popen([argv.index('|')], stdout = PIPE)
+	p2 = Popen([argv.index('|')+1],stdin= = p1.stdout, stdout=PIPE)
+	p1.stdout.close()
+	output=p2.communicate()[0]
+    
+    else:
+        print "TODO: execute %s" % ' '.join(argv)
+        subprocess.call(argv, stdin=None, stdout=None, stderr=None, shell=False)
+
+# goodbye message
+goodbye = "have a good sunny day, see you back soon"
+print "*"+"-"*(len(goodbye)+2)+"*"
+print "| %s |" % goodbye
+print "*"+"-"*(len(goodbye)+2)+"*"
