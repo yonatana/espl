@@ -33,21 +33,29 @@ while True:
             os.chdir(home)
         except OSError, s:
             print >>sys.stderr, "chdir: %s" % s
-    elif argv[-2] =='>':
-      stout = open(argv[-1],'w') 
-    elif argv[-2] =='<':  
-      stdin = open(argv[-1],'w')
-        
+    #if '>' or '<' or '|' in argv:
+    fdin = sys.stdin
+    fdout = sys.stdout
+    progname = argv
+    if '>' in argv:
+     stout = open(argv[argv.index('>')+1],'w')
+     progname = argv[:-2]
+    elif '<' in argv:  
+     stdin = open(argv[argv.index('<')+1],'r')
+     progname = argv[:-2]
     elif '|' in argv:
-	print "do pipes to the face"
-	p1 = Popen([argv.index('|')], stdout = PIPE)
-	p2 = Popen([argv.index('|')+1],stdin= p1.stdout, stdout=PIPE)
-	p1.stdout.close()
-	output=p2.communicate()[0]
-    
+      print "do pipes to the face"
+      p1 = subprocess.Popen(argv[:argv.index('|')], stdin=fdin, stdout=subprocess.PIPE)
+      progname = argv[argv.index('|')+1:]
+      fdin=p1.stdout
+      subprocess.call(progname , stdin=fdin , stdout=fdout)
+    if fdin is not sys.stdin:
+     fdin.close()
+    elif fdout is not sys.stdout:
+     fdout.close()
     else:
-        print "TODO: execute %s" % ' '.join(argv)
-        subprocess.call(argv, stdin=None, stdout=None, stderr=None, shell=False)
+      print "TODO: execute %s" % ' '.join(argv)
+      subprocess.call(argv, stdin=None, stdout=None, stderr=None, shell=False)
 
 # goodbye message
 goodbye = "have a good sunny day, see you back soon"
