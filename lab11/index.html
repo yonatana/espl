@@ -1,0 +1,45 @@
+<html>
+
+<head><link rel="stylesheet" type="text/css" href=c.css>
+<body bgcolor="Darkgrey">
+<div  id="myDiv" name="myDiv" title="Example Div Element" align="right">
+
+<form id ="a" name="input" action="http://www.cs.bgu.ac.il/~abedas/remote_service_name.php" method="get">
+First name: <input onkeyup="val1(event)" type="text" name="username" value="yonatana">
+Last name: <input type="text" name="username" value="Alexander is the bomb">
+<input type="submit" value="Submit"><br>
+suggeustios: 
+</form> 
+<hr>
+
+
+</div>
+<div id="a1" name="head" title="Example Div head">
+<h1 id="a1">Yonatan the mighty</h1>
+<p>"Great midds discuss ideass
+<p>Avrerage midnds discuss events</p>
+<p>Small mind discuss people"</p>
+</div>
+
+<div id="a2" name="image" title="Example Div image" align="right">
+<h2>New Zealand</h2>
+<img border="0" src="me.jpg" alt="Yonatan The King" width="304" height="400">
+</div>
+<div id="a4" name="image" title="Example Div image" align="center">
+<h2 id ="a3">Me and my sister</h2>
+<img border="0" src="sis.jpg" alt="Yonatan The King" width="304" height="200">
+</div>
+</head>
+</html>
+
+<script>
+function val1(event)
+{
+if(48 <= event.keyCode<=57 && event.keyCode<=57){
+alert("Dont use a number");
+var x=document.forms["myForm"]["fname"].value;
+return false;
+  }
+}
+
+</script>
